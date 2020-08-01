@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import ingredientReducer from './store/reducers/ingredients';
+
+
+const reducer = combineReducers({
+  ig: ingredientReducer
+});
+
+const store = createStore(reducer)
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
